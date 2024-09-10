@@ -123,7 +123,9 @@ class SheetPrimaryScrollPosition extends ScrollPositionWithSingleContext {
 
     /// There is asynchronous data in the page, causing the page to be re-rendered, and goBallistic callbacks one more time  
     /// If hasContentDimensions is true, sheetPosition.goBallistic(velocity) will be executed;  
-    /// Let the page hide again, so it adds judgment  
+    /// Let the page hide again, so it adds judgment
+    ///
+    /// See https://github.com/jamesblasco/modal_bottom_sheet/issues/360
     if (sheetPosition.pixels != 1.0 && sheetPosition.hasContentDimensions) {  
        sheetPosition.goBallistic(velocity);  
     }
