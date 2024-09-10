@@ -121,8 +121,11 @@ class SheetPrimaryScrollPosition extends ScrollPositionWithSingleContext {
       return;
     }
 
-    if (sheetPosition.hasContentDimensions) {
-      sheetPosition.goBallistic(velocity);
+    /// There is asynchronous data in the page, causing the page to be re-rendered, and goBallistic callbacks one more time  
+    /// If hasContentDimensions is true, sheetPosition.goBallistic(velocity) will be executed;  
+    /// Let the page hide again, so it adds judgment  
+    if (sheetPosition.pixels != 1.0 && sheetPosition.hasContentDimensions) {  
+       sheetPosition.goBallistic(velocity);  
     }
 
     if (velocity > 0.0 &&
